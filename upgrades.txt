@@ -1,0 +1,41 @@
+VibeChat Future Upgrades Roadmap
+================================
+
+This document outlines the planned future upgrades and feature additions for the VibeChat real-time messaging application.
+
+1. End-to-End (E2E) Encryption
+------------------------------
+- Implementation of the Signal Protocol (or similar Double Ratchet Algorithm) for secure, private client-side encryption.
+- Ensuring that all text messages and shared media are fully encrypted before leaving the sender's device and can only be decrypted by the intended recipient.
+- Zero-knowledge architecture where the server never has access to the raw message content or decryption keys.
+
+2. Voice Chat
+-------------
+- Integrating WebRTC (Web Real-Time Communication) to support high-quality, low-latency group voice calls directly within the chat rooms.
+- In-app voice status indicators, speaker highlight effects, and individual volume control features.
+- Fallback server support via TURN/STUN servers to ensure connection reliability across restricted networks.
+
+3. Specific Text Reply (Message Threading & Quoting)
+----------------------------------------------------
+- UI support for quoting/replying to specific messages in a room.
+- Clear reference UI linking the reply back to the original message for structured conversation.
+- Quick shortcut gestures (like swiping a message) to reply.
+
+4. Android & Mobile Releases
+----------------------------
+- Wrapping the frontend into cross-platform hybrid mobile shells using technologies like Capacitor / Ionic or React Native.
+- Standard Android (.apk / .aab) builds optimized for performance, touch controls, and responsiveness.
+- Push notifications via Firebase Cloud Messaging (FCM) to notify users of incoming messages when the app is running in the background.
+- Biometric lock and hardware-backed key storage for E2E encryption keys.
+
+5. Rich Media & File Sharing
+----------------------------
+- Support for uploading and sharing images, videos, audio notes, and other file types in rooms.
+- Image optimization and thumbnail generation on the fly to conserve bandwidth.
+- Secure, expiring storage links for shared files.
+
+6. Enhanced Room Customization & Moderation
+------------------------------------------
+- Ability to set custom room names, theme colors, and custom avatar styling.
+- Basic administrative/moderation permissions (e.g., room creator can kick/ban users, mute participants, or toggle room visibility).
+- Ephemeral room options (e.g., set messages to self-destruct after a specific time duration).

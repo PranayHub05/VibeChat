@@ -1,10 +1,5 @@
-/* ============================================================
-   VibeChat — Client-side Application Logic
-   ============================================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ---- State ----
   let ws = null;
   let currentUser = '';
   let currentRoom = '';
@@ -14,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const MAX_RECONNECT = 5;
   const RECONNECT_DELAY = 3000;
 
-  // ---- DOM References ----
   const landingScreen     = document.getElementById('landing-screen');
   const chatScreen        = document.getElementById('chat-screen');
   const usernameInput     = document.getElementById('username-input');
@@ -37,20 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const sidebarOverlay    = document.getElementById('sidebar-overlay');
   const copyToast         = document.getElementById('copy-toast');
 
-  // ============================================================
-  //  Screen Management
-  // ============================================================
   function showScreen(screenId) {
     [landingScreen, chatScreen].forEach(s => s.classList.remove('active'));
     document.getElementById(screenId).classList.add('active');
   }
 
-  // Start on landing
   showScreen('landing-screen');
 
-  // ============================================================
-  //  Utilities
-  // ============================================================
   function escapeHtml(str) {
     const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
     return String(str).replace(/[&<>"']/g, c => map[c]);
@@ -81,16 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 
-  // ============================================================
-  //  Landing — Room Code Input Auto-uppercase
-  // ============================================================
   roomCodeInput.addEventListener('input', () => {
     roomCodeInput.value = roomCodeInput.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
   });
 
-  // ============================================================
-  //  Landing — Create Room
-  // ============================================================
   createBtn.addEventListener('click', async () => {
     const username = usernameInput.value.trim();
     if (!username) {
@@ -124,9 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ============================================================
-  //  Landing — Join Room
-  // ============================================================
   joinBtn.addEventListener('click', async () => {
     const username = usernameInput.value.trim();
     const code = roomCodeInput.value.trim().toUpperCase();
@@ -166,9 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ============================================================
-  //  WebSocket Connection
-  // ============================================================
   function connectWebSocket() {
     const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
     const url = `${protocol}//${location.host}/ws/${encodeURIComponent(currentRoom)}?username=${encodeURIComponent(currentUser)}`;
@@ -233,27 +208,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // ============================================================
-  //  Message Rendering
-  // ============================================================
   function appendChatMessage(data, skipScroll) {
     const isOwn = data.username === currentUser;
     const wrapper = document.createElement('div');
     wrapper.className = `message ${isOwn ? 'own-message' : 'other-message'}`;
 
-    // Username label
     const nameEl = document.createElement('span');
     nameEl.className = 'message-username';
     nameEl.textContent = escapeHtml(data.username || '');
     wrapper.appendChild(nameEl);
 
-    // Bubble
     const bubble = document.createElement('div');
     bubble.className = 'message-bubble';
     bubble.textContent = data.content || '';
     wrapper.appendChild(bubble);
 
-    // Timestamp
     if (data.timestamp) {
       const timeEl = document.createElement('span');
       timeEl.className = 'message-time';
@@ -305,9 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================================================
-  //  Sending Messages
-  // ============================================================
   function sendMessage() {
     const text = messageInput.value.trim();
     if (!text || !ws || ws.readyState !== WebSocket.OPEN) return;
@@ -327,23 +293,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Enable / disable send button
   messageInput.addEventListener('input', () => {
     sendBtn.disabled = messageInput.value.trim().length === 0;
   });
 
-  // ============================================================
-  //  Copy Room Code
-  // ============================================================
   copyCodeBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(currentRoom).then(() => {
       copyToast.classList.remove('show');
-      // Force reflow to restart animation
       void copyToast.offsetWidth;
       copyToast.classList.add('show');
       setTimeout(() => copyToast.classList.remove('show'), 1600);
     }).catch(() => {
-      // Fallback: select from a temp input
       const tmp = document.createElement('input');
       tmp.value = currentRoom;
       document.body.appendChild(tmp);
@@ -355,9 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ============================================================
-  //  Leave Room
-  // ============================================================
   leaveBtn.addEventListener('click', () => {
     intentionalClose = true;
     if (ws) {
@@ -374,9 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showScreen('landing-screen');
   });
 
-  // ============================================================
-  //  Mobile Sidebar Toggle
-  // ============================================================
   sidebarToggle.addEventListener('click', () => {
     sidebarOpen = !sidebarOpen;
     sidebar.classList.toggle('open', sidebarOpen);
@@ -389,9 +343,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarOverlay.classList.remove('visible');
   });
 
-  // ============================================================
-  //  Enter key on landing inputs
-  // ============================================================
   usernameInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();

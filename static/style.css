@@ -1,8 +1,3 @@
-/* ========================================
-   VibeChat — Dark Glassmorphism Theme
-   ======================================== */
-
-/* ----- Reset & Base ----- */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -41,7 +36,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background gradient overlay */
 body::before {
   content: '';
   position: fixed;
@@ -53,7 +47,6 @@ body::before {
   z-index: 0;
 }
 
-/* Screen-reader only */
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -63,7 +56,6 @@ body::before {
   border: 0;
 }
 
-/* ====== Scrollbar ====== */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -78,13 +70,11 @@ body::before {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
-/* ====== Screen Transitions ====== */
 .screen {
   position: absolute;
   inset: 0;
@@ -103,7 +93,6 @@ body::before {
   z-index: 2;
 }
 
-/* ====== Utility Classes ====== */
 .fade-in {
   animation: fadeIn 0.4s ease forwards;
 }
@@ -137,7 +126,6 @@ body::before {
   100% { opacity: 0; transform: translateY(-6px); }
 }
 
-/* ====== Shared Components ====== */
 .input {
   width: 100%;
   height: 48px;
@@ -188,7 +176,6 @@ body::before {
   animation: shake 0.4s ease;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -251,9 +238,6 @@ body::before {
   transform: scale(0.93);
 }
 
-/* ============================================================
-   LANDING SCREEN
-   ============================================================ */
 #landing-screen {
   align-items: center;
   justify-content: center;
@@ -269,7 +253,6 @@ body::before {
   gap: 8px;
 }
 
-/* Brand */
 .brand {
   display: flex;
   align-items: center;
@@ -296,12 +279,10 @@ body::before {
   margin-bottom: 20px;
 }
 
-/* Username */
 .username-group {
   margin-bottom: 12px;
 }
 
-/* Action cards */
 .action-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -368,14 +349,10 @@ body::before {
   margin-top: auto;
 }
 
-/* ============================================================
-   CHAT SCREEN
-   ============================================================ */
 #chat-screen {
   flex-direction: column;
 }
 
-/* Header */
 .chat-header {
   display: flex;
   align-items: center;
@@ -432,7 +409,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Sidebar toggle (mobile-only by default) */
 .sidebar-toggle {
   display: none;
   position: relative;
@@ -455,7 +431,6 @@ body::before {
   line-height: 1;
 }
 
-/* Main area */
 .chat-main {
   display: flex;
   flex: 1;
@@ -463,7 +438,6 @@ body::before {
   position: relative;
 }
 
-/* Chat column */
 .chat-column {
   flex: 1;
   display: flex;
@@ -471,7 +445,6 @@ body::before {
   min-width: 0;
 }
 
-/* Messages */
 .messages {
   flex: 1;
   overflow-y: auto;
@@ -481,7 +454,6 @@ body::before {
   gap: 6px;
 }
 
-/* Message wrapper */
 .message {
   display: flex;
   flex-direction: column;
@@ -492,7 +464,6 @@ body::before {
   margin-top: 2px;
 }
 
-/* Own messages */
 .own-message {
   align-self: flex-end;
   align-items: flex-end;
@@ -506,7 +477,6 @@ body::before {
   display: none;
 }
 
-/* Others messages */
 .other-message {
   align-self: flex-start;
   align-items: flex-start;
@@ -544,7 +514,6 @@ body::before {
   color: rgba(255,255,255,0.45);
 }
 
-/* System messages */
 .system-message {
   text-align: center;
   padding: 8px 16px;
@@ -566,7 +535,6 @@ body::before {
 .system-message::before { right: calc(50% + 80px); }
 .system-message::after  { left: calc(50% + 80px); }
 
-/* Message input bar */
 .message-input-bar {
   display: flex;
   align-items: center;
@@ -612,7 +580,6 @@ body::before {
   box-shadow: none;
 }
 
-/* Sidebar */
 .sidebar {
   width: 260px;
   background: var(--surface);
@@ -698,7 +665,6 @@ body::before {
   flex-shrink: 0;
 }
 
-/* Sidebar overlay (mobile) */
 .sidebar-overlay {
   display: none;
   position: fixed;
@@ -707,7 +673,6 @@ body::before {
   z-index: 29;
 }
 
-/* Toast */
 .toast {
   position: fixed;
   bottom: 80px;
@@ -729,9 +694,6 @@ body::before {
   animation: toastIn 1.5s ease forwards;
 }
 
-/* ============================================================
-   RESPONSIVE — max 768px
-   ============================================================ */
 @media (max-width: 768px) {
   .brand-title {
     font-size: 2.2rem;
@@ -744,12 +706,10 @@ body::before {
     grid-template-columns: 1fr;
   }
 
-  /* Sidebar toggle visible */
   .sidebar-toggle {
     display: inline-flex;
   }
 
-  /* Sidebar becomes overlay */
   .sidebar {
     position: fixed;
     top: 0;
